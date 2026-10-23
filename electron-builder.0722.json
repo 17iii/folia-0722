@@ -1,0 +1,94 @@
+{
+  "appId": "top.izuna.foliamajor",
+  "productName": "Folia",
+  "directories": {
+    "output": "release-0722"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "shared/**/*",
+    "!**/node_modules/youtubei.js/bundle/**",
+    "package.json",
+    "build/miao.png",
+    "build/thumbar/*.png"
+  ],
+  "asarUnpack": [
+    "node_modules/@koromix/koffi-*/**/*.node",
+    "node_modules/@lox-audioserver/node-librespot/prebuilds/**/*.node"
+  ],
+  "extraResources": [
+    {
+      "from": "build/ffmpeg/${os}-${arch}",
+      "to": "ffmpeg-audio"
+    },
+    {
+      "from": "build/mnn/${os}-${arch}",
+      "to": "mnn",
+      "filter": [
+        "*folia_mnn.*"
+      ]
+    },
+    {
+      "from": "models",
+      "to": "models",
+      "filter": [
+        "beat_this-wgsl.bin",
+        "htdemucs-wgsl.bin"
+      ]
+    },
+    {
+      "from": "build/icon.png",
+      "to": "icon.png"
+    },
+    {
+      "from": "build/icon.png",
+      "to": "linux/icon.png"
+    },
+    {
+      "from": "build/trayTemplate.png",
+      "to": "trayTemplate.png"
+    },
+    {
+      "from": "build/trayTemplate@2x.png",
+      "to": "trayTemplate@2x.png"
+    },
+    {
+      "from": "packaging/linux/folia-major.desktop",
+      "to": "linux/folia-major.desktop"
+    },
+    {
+      "from": "packaging/linux/README-LINUX.txt",
+      "to": "linux/README-LINUX.txt"
+    }
+  ],
+  "win": {
+    "artifactName": "${productName}-Setup-${version}.${ext}",
+    "target": [
+      "nsis"
+    ],
+    "icon": "build/icon.png",
+    "extraResources": [
+      {
+        "from": "build",
+        "to": ".",
+        "filter": [
+          "folia-wallpaper-helper.exe"
+        ]
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "installerLanguages": [
+      "en_US",
+      "zh_CN",
+      "id"
+    ],
+    "include": "build/installer.nsh"
+  },
+  "afterPack": "build/afterPack.cjs",
+  "npmRebuild": false,
+  "electronDist": "C:/Users/21813/AppData/Local/electron/Cache/758a3dd4e4f04227b2ad64d94c8b9ceaa822ba77c767dcee83a537e44a590364/electron-v43.7.5-win32-x64.zip"
+}

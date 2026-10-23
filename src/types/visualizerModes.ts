@@ -28,6 +28,9 @@ export const BUILTIN_VISUALIZER_MODES = [
     'still',
     'tempera',
     'tilt',
+    // 上游 v0.7.22 的清单里还写着 neon / ink / mirror / sparkle，但公开源码里没有这四个模式的
+    // 目录（entry.tsx 找不到），registry 的断言会因此抛错、整个可视化层起不来。
+    // 这个构建只补三个背景，所以先把这四条未实现的声明去掉；将来若把样式补进来，再加回去。
 ] as const;
 
 export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [
@@ -37,6 +40,9 @@ export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [
     'nomand',
     'sora',
     'url',
+    'aurora',
+    'grain',
+    'ripple',
 ] as const;
 
 export const DEFAULT_VISUALIZER_MODE: VisualizerMode = 'classic';
